@@ -1,0 +1,14 @@
+{
+  "name": "blinkt-remote",
+  "version": "1.0.0",
+  "description": "Control a blinkt connected to a raspberry pi remotely",
+  "main": "blinkt-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William and John Sibly",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0"
+  }
+}
