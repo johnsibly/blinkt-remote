@@ -11,14 +11,17 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+let options = {
+    index: "coming-soon.html"
+};
+app.use(express.static('public'), options);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.put('/led', function(req, res) {
     let led = req.get('led');
     let ledValue = req.get('ledValue');
-    const rgb = colorsys.hsvToRgb(Number(ledValue)*32.7, 100.0, 100.0);
+    const rgb = colorsys.hsvToRgb(Number(ledValue), 100.0, 100.0);
     leds.setPixel(led, rgb.r, rgb.g, rgb.b, 0.1);
     leds.sendUpdate();
 
@@ -29,5 +32,9 @@ app.put('/led', function(req, res) {
 app.listen(port,function() {
     leds.setup();
     leds.clearAll();
-    console.log(`Example app listening on port ${port}!`)
+
+    var host = server.address().address;
+    var port = server.address().port;
+      
+    console.log('Listening at http://%s:%s navigate here to control the blinkt', host, port);
 });
