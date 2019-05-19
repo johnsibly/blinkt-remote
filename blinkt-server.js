@@ -12,9 +12,9 @@ const app = express();
 const port = 3000;
 
 let options = {
-    index: "coming-soon.html"
+    index: "blinkt-client.html"
 };
-app.use(express.static('public'), options);
+app.use(express.static('public', options));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
@@ -24,17 +24,13 @@ app.put('/led', function(req, res) {
     const rgb = colorsys.hsvToRgb(Number(ledValue), 100.0, 100.0);
     leds.setPixel(led, rgb.r, rgb.g, rgb.b, 0.1);
     leds.sendUpdate();
-
     console.log(`The values ${led} and ${ledValue} where sent`);
     return res.send(`The values ${led} and ${ledValue} where sent`);
 });
 
-app.listen(port,function() {
+app.listen(port, function() {
     leds.setup();
     leds.clearAll();
-
-    var host = server.address().address;
-    var port = server.address().port;
-      
-    console.log('Listening at http://%s:%s navigate here to control the blinkt', host, port);
+    console.log(`Listening on http://locahost:${port} navigate here to control the blinkt`);
 });
+
