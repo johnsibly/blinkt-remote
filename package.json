@@ -9,6 +9,8 @@
   "author": "William and John Sibly",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.0"
+    "colorsys": "^1.0.22",
+    "express": "^4.17.0",
+    "node-blinkt": "^1.0.5"
   }
 }
